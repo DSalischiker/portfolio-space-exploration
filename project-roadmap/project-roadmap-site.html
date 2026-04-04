@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Portfolio — Roadmap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060810;
+    --bg2: #0c1020;
+    --bg3: #111828;
+    --surface: #141c2e;
+    --border: rgba(120,160,255,0.1);
+    --border-hover: rgba(120,160,255,0.25);
+    --text: #c8d8f8;
+    --muted: #5a6a8a;
+    --accent: #4f8eff;
+    --accent2: #7c3aed;
+
+    --p1: #7c6fff;
+    --p1-bg: rgba(124,111,255,0.08);
+    --p1-border: rgba(124,111,255,0.2);
+
+    --p2: #34d399;
+    --p2-bg: rgba(52,211,153,0.08);
+    --p2-border: rgba(52,211,153,0.2);
+
+    --p3: #60a5fa;
+    --p3-bg: rgba(96,165,250,0.08);
+    --p3-border: rgba(96,165,250,0.2);
+
+    --p4: #fbbf24;
+    --p4-bg: rgba(251,191,36,0.08);
+    --p4-border: rgba(251,191,36,0.2);
+
+    --p5: #86efac;
+    --p5-bg: rgba(134,239,172,0.08);
+    --p5-border: rgba(134,239,172,0.2);
+
+    --tag-code-bg: rgba(124,111,255,0.12);
+    --tag-code: #a5b4fc;
+    --tag-asset-bg: rgba(251,191,36,0.12);
+    --tag-asset: #fcd34d;
+    --tag-design-bg: rgba(52,211,153,0.12);
+    --tag-design: #6ee7b7;
+    --tag-content-bg: rgba(251,113,133,0.12);
+    --tag-content: #fca5a5;
+    --tag-deploy-bg: rgba(96,165,250,0.12);
+    --tag-deploy: #93c5fd;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Starfield */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 15% 10%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 72% 8%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 90% 20%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 8% 50%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 60%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(2px 2px at 65% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 82% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 42% 80%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 18% 88%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 95% 85%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 95%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 42%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 72%, rgba(255,255,255,0.4) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Nebula glow */
+  body::after {
+    content: '';
+    position: fixed;
+    top: -20%;
+    left: -10%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(ellipse at center, rgba(79,142,255,0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  header {
+    margin-bottom: 64px;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 40px;
+  }
+
+  .header-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .header-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin-bottom: 16px;
+  }
+
+  h1 span {
+    background: linear-gradient(135deg, #4f8eff 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-meta {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: var(--muted);
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .header-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* Phase sections */
+  .phase {
+    margin-bottom: 56px;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    padding: 12px 0 12px;
+    z-index: 10;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .phase-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .phase-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    flex: 1;
+  }
+
+  .phase-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .phase-duration {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* Task cards */
+  .tasks { display: flex; flex-direction: column; gap: 10px; }
+
+  .task {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .task::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .task:hover { border-color: var(--border-hover); background: #161e30; }
+  .task:hover::before { opacity: 1; }
+
+  .task-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .task-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e8f0ff;
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  .task-desc {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 5px;
+    line-height: 1.6;
+  }
+
+  .task-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .task-detail {
+    display: none;
+    margin-top: 12px;
+    padding: 12px 14px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    border-left: 2px solid var(--border);
+    font-size: 12.5px;
+    color: #8896b8;
+    line-height: 1.7;
+  }
+
+  .task-detail code {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,0.07);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: #a5b4fc;
+  }
+
+  .task.open .task-detail { display: block; }
+
+  .toggle-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    transition: color 0.2s;
+  }
+
+  .task:hover .toggle-hint { color: var(--accent); }
+  .task.open .toggle-hint::before { content: '— '; }
+  .task:not(.open) .toggle-hint::before { content: '+ '; }
+
+  /* Tags */
+  .tag-code { background: var(--tag-code-bg); color: var(--tag-code); }
+  .tag-asset { background: var(--tag-asset-bg); color: var(--tag-asset); }
+  .tag-design { background: var(--tag-design-bg); color: var(--tag-design); }
+  .tag-content { background: var(--tag-content-bg); color: var(--tag-content); }
+  .tag-deploy { background: var(--tag-deploy-bg); color: var(--tag-deploy); }
+
+  /* Phase accent colors */
+  .p1 .phase-dot { background: var(--p1); box-shadow: 0 0 8px var(--p1); }
+  .p1 .task::before { background: var(--p1); }
+  .p1 .phase-num { color: var(--p1); }
+
+  .p2 .phase-dot { background: var(--p2); box-shadow: 0 0 8px var(--p2); }
+  .p2 .task::before { background: var(--p2); }
+  .p2 .phase-num { color: var(--p2); }
+
+  .p3 .phase-dot { background: var(--p3); box-shadow: 0 0 8px var(--p3); }
+  .p3 .task::before { background: var(--p3); }
+  .p3 .phase-num { color: var(--p3); }
+
+  .p4 .phase-dot { background: var(--p4); box-shadow: 0 0 8px var(--p4); }
+  .p4 .task::before { background: var(--p4); }
+  .p4 .phase-num { color: var(--p4); }
+
+  .p5 .phase-dot { background: var(--p5); box-shadow: 0 0 8px var(--p5); }
+  .p5 .task::before { background: var(--p5); }
+  .p5 .phase-num { color: var(--p5); }
+
+  /* Template box */
+  .template-box {
+    margin-top: 56px;
+    border: 1px dashed rgba(120,160,255,0.2);
+    border-radius: 10px;
+    padding: 24px;
+    background: rgba(79,142,255,0.03);
+  }
+
+  .template-box-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-family: 'Space Mono', monospace;
+    margin-bottom: 14px;
+  }
+
+  .template-box pre {
+    font-family: 'Space Mono', monospace;
+    font-size: 11.5px;
+    color: #8896b8;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+
+  .template-box .key { color: #a5b4fc; }
+  .template-box .str { color: #86efac; }
+  .template-box .num { color: #fbbf24; }
+  .template-box .comment { color: var(--muted); font-style: italic; }
+
+  .template-box p {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Animations */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .phase {
+    animation: fadeUp 0.5s ease both;
+  }
+  .phase:nth-child(1) { animation-delay: 0.05s; }
+  .phase:nth-child(2) { animation-delay: 0.1s; }
+  .phase:nth-child(3) { animation-delay: 0.15s; }
+  .phase:nth-child(4) { animation-delay: 0.2s; }
+  .phase:nth-child(5) { animation-delay: 0.25s; }
+
+  @media (max-width: 540px) {
+    .phase-header { flex-wrap: wrap; }
+    .phase-duration { margin-left: 0; width: 100%; }
+    header { margin-bottom: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="header-label">Diego Salischiker — Portfolio Build</div>
+    <h1>Space Explorer<br><span>Roadmap</span></h1>
+    <p style="color:var(--muted);font-size:14px;max-width:520px">A Three.js interactive portfolio where the user pilots a rocket through solar systems representing projects and experience.</p>
+    <div class="header-meta">
+      <span>◈ 5 phases</span>
+      <span>◈ 14–18 weeks total</span>
+      <span>◈ No rush — passion project</span>
+      <span>◈ Last updated April 2026</span>
+    </div>
+  </header>
+
+  <!-- Phase 1 -->
+  <div class="phase p1">
+    <div class="phase-header">
+      <div class="phase-dot"></div>
+      <div class="phase-num">Phase 01</div>
+      <div class="phase-title">Foundation & Architecture</div>
+      <div class="phase-duration">2–3 weeks</div>
+    </div>
+    <div class="tasks">
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">World design document</div>
+          <span class="task-tag tag-design">design</span>
+        </div>
+        <div class="task-desc">Define the universe: scale, navigation style, camera mode, how systems are laid out in space. Lock this before writing code.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Decide: first-person or third-person camera? Free-flight or on-rails? How close does the user need to fly to trigger a project card? Can systems be added without breaking the layout? Write 1–2 pages answering these. It'll save weeks of rework.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Tech stack decision</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">Three.js + Vite or React Three Fiber? Decide based on how component-driven the UI panels will be.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">If project info cards are rich (animated, interactive), React Three Fiber + Drei is worth the overhead. If it's mostly 3D with simple overlays, vanilla Three.js + Vite is simpler and faster. Either works — just pick one and commit.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Scene scaffold & dev environment</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">Bootstrap project, set up Three.js scene loop, basic camera controls, ambient starfield. Get something rendering on screen fast.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use a procedural starfield (particle system, ~2000 points) rather than a skybox texture — cheaper and easier to tweak. Add <code>stats.js</code> and a GUI panel (lil-dat or Tweakpane) early; you'll use it constantly while building.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Data schema for systems & planets</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">Design the JSON/TS structure that describes each solar system (project) and its planets (details). This is the template everything else plugs into.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Example fields: <code>id</code>, <code>name</code>, <code>position</code>, <code>type</code> (project | experience | skill), <code>planetColor</code>, <code>moons[]</code>, <code>description</code>, <code>links[]</code>, <code>tags[]</code>, <code>modelPath</code>. A good schema makes adding new systems trivial — just add an object.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase p2">
+    <div class="phase-header">
+      <div class="phase-dot"></div>
+      <div class="phase-num">Phase 02</div>
+      <div class="phase-title">Core 3D Experience</div>
+      <div class="phase-duration">4–6 weeks</div>
+    </div>
+    <div class="tasks">
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Rocket controller</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">Flight physics (simplified), keyboard + mouse/touch input, camera follow rig. The feel of movement is the heart of the experience.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use smooth lerp-based movement, not instant. Add subtle camera lag (camera chases the rocket with a delay). Consider gamepad support — it's surprisingly easy and feels great. For mobile: joystick-style touch input.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Procedural planet & system renderer</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">System takes a data object and renders a sun + orbiting planets + moons. Must work for any entry in your schema.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use <code>ShaderMaterial</code> for planets — even basic noise-based surface shaders make a huge visual difference. Each planet's color can be seeded from its data ID, making them deterministic and unique without manual art for each one.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Proximity detection & UI triggers</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">When the rocket enters a planet's orbit range, trigger info panel. Raycasting for click/tap interactions.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use distance checks per frame (cheap) rather than raycasting everything. Only raycast on pointer events. Animate the info panel in using CSS transitions or GSAP — it should feel like the HUD of a spacecraft.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Rocket model — hero asset</div>
+          <span class="task-tag tag-asset">asset</span>
+        </div>
+        <div class="task-desc">Model or source your rocket. This is the one asset worth spending real time on — the user stares at it the whole visit.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Model it yourself in Blender — a stylized low-poly rocket (500–1500 tris) is very achievable. Export as <code>.glb</code> with baked textures. Add a subtle engine glow using a <code>PointLight</code> child on the thruster. Sketchfab fallback: "stylized rocket low poly".</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Ambient audio & sound design</div>
+          <span class="task-tag tag-asset">asset</span>
+        </div>
+        <div class="task-desc">Space ambience, subtle thruster sound, UI chime on planet discovery. Audio transforms the feel.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use the Web Audio API or Howler.js. Freesound.org and ZapSplat have good space/sci-fi sounds. Keep the main ambience loopable and quiet — it should be felt more than heard. Always add a mute button.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase p3">
+    <div class="phase-header">
+      <div class="phase-dot"></div>
+      <div class="phase-num">Phase 03</div>
+      <div class="phase-title">Content & Portfolio Systems</div>
+      <div class="phase-duration">3–4 weeks</div>
+    </div>
+    <div class="tasks">
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Map your portfolio to the universe</div>
+          <span class="task-tag tag-content">content</span>
+        </div>
+        <div class="task-desc">Decide which projects become systems, which skills become planets, which roles become moons. Creative work, not just data entry.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Suggested mapping: major projects = solar systems. Professional experience = a large system at the center. Skills = a scattered asteroid belt. Side projects = smaller, dimmer systems further out. The spatial metaphor should feel intentional.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">HUD & info panel design</div>
+          <span class="task-tag tag-design">design</span>
+        </div>
+        <div class="task-desc">Design the in-world UI: project cards, navigation hints, "you are here" indicator. Must feel like a spacecraft HUD.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use CSS for the overlay UI (not 3D objects). A dark translucent panel with a mono font and subtle scan-line effect goes a long way. Include: project name, description, tech stack tags, links. Keep it skimmable in 10 seconds.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Navigation / galaxy map</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">A 2D minimap or fast-travel system so recruiters can jump directly to a project without flying there manually.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">A recruiter visiting your site has 90 seconds. Give them a "jump to" menu or pause-screen galaxy map. Animate the camera flying to the target instead of cutting — that's the fun part. This is critical for usability.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Onboarding sequence</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">First 10 seconds: animated title, brief controls explanation, camera pan revealing the universe.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">This is your first impression. A slow camera pull-back revealing the galaxy, your name appearing in space, then the rocket spawning in — done well, this alone will get you shared. Use GSAP Timeline for sequencing. Don't skip this.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase p4">
+    <div class="phase-header">
+      <div class="phase-dot"></div>
+      <div class="phase-num">Phase 04</div>
+      <div class="phase-title">Polish & Performance</div>
+      <div class="phase-duration">2–3 weeks</div>
+    </div>
+    <div class="tasks">
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Performance optimization</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">LOD for distant systems, frustum culling, texture compression, draw call batching. Target 60fps on a mid-range laptop.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Use <code>THREE.LOD</code> to swap high/low poly planets at distance thresholds. Compress textures with KTX2/Basis. Merge static geometries. Profile with Chrome DevTools. <code>renderer.info</code> is your friend.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Custom planet models — selected hero planets</div>
+          <span class="task-tag tag-asset">asset</span>
+        </div>
+        <div class="task-desc">For your 2–3 most important projects, model a distinctive planet/moon instead of using procedural geometry.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">These hero planets are what people screenshot and share. Consider something thematic to each project. Even a distinctive texture baked in Blender makes a huge difference. Keep poly count under 5k for web.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Post-processing & visual effects</div>
+          <span class="task-tag tag-design">design</span>
+        </div>
+        <div class="task-desc">Bloom on planet glows, subtle film grain, depth of field on the planet info state. Use Three.js EffectComposer.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Bloom is the single highest-impact post-processing effect for a space scene. Even low intensity makes everything look cinematic. Add it last and be conservative. Use <code>UnrealBloomPass</code> from Three.js examples.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Mobile & accessibility fallback</div>
+          <span class="task-tag tag-code">code</span>
+        </div>
+        <div class="task-desc">Touch controls, low-end device detection with reduced quality, static fallback for no-WebGL environments.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Detect GPU tier with the <code>detect-gpu</code> library. On low-end: disable post-processing, reduce star count, simplify shaders. On no-WebGL: show a stylized 2D SVG galaxy map. Don't let recruiters hit a black screen.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase p5">
+    <div class="phase-header">
+      <div class="phase-dot"></div>
+      <div class="phase-num">Phase 05</div>
+      <div class="phase-title">Launch & Maintainability</div>
+      <div class="phase-duration">1–2 weeks</div>
+    </div>
+    <div class="tasks">
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Deploy to Vercel or Cloudflare Pages</div>
+          <span class="task-tag tag-deploy">deploy</span>
+        </div>
+        <div class="task-desc">Static deploy, custom domain, CDN for assets, automated deploys from main branch.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Adding new systems — the template habit</div>
+          <span class="task-tag tag-content">content</span>
+        </div>
+        <div class="task-desc">Document the 3-step process for adding a new project. Should take under 30 minutes per system.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Your schema from Phase 1 is what makes this painless. The goal: a new project requires zero code changes — just a new JSON object in your <code>systems.ts</code> file. Write a short README for your future self.</div>
+      </div>
+
+      <div class="task" onclick="toggleTask(this)">
+        <div class="task-top">
+          <div class="task-title">Analytics & share metadata</div>
+          <span class="task-tag tag-deploy">deploy</span>
+        </div>
+        <div class="task-desc">Add Plausible or Fathom (privacy-friendly), OG image for link sharing, shareable URLs to specific systems.</div>
+        <div class="toggle-hint">show detail</div>
+        <div class="task-detail">Deep links like <code>yoursite.com/?system=project-name</code> that teleport users directly to a project are great for job applications. Your OG image should be a screenshot of the most visually impressive moment in the experience.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Template box -->
+  <div class="template-box">
+    <div class="template-box-title">// System data template — copy to add a new project</div>
+    <pre>{
+  <span class="key">id</span>: <span class="str">"project-slug"</span>,
+  <span class="key">name</span>: <span class="str">"Project Name"</span>,
+  <span class="key">position</span>: [<span class="num">x</span>, <span class="num">y</span>, <span class="num">z</span>],
+  <span class="key">type</span>: <span class="str">"project"</span>, <span class="comment">// project | experience | skill</span>
+  <span class="key">starColor</span>: <span class="str">"#hex"</span>,
+  <span class="key">planets</span>: [
+    {
+      <span class="key">name</span>: <span class="str">"Detail name"</span>,
+      <span class="key">description</span>: <span class="str">"Short description."</span>,
+      <span class="key">tags</span>: [<span class="str">"React"</span>, <span class="str">"Three.js"</span>],
+      <span class="key">links</span>: [{ <span class="key">label</span>: <span class="str">"Live"</span>, <span class="key">url</span>: <span class="str">"https://..."</span> }],
+      <span class="key">orbitRadius</span>: <span class="num">8</span>,
+      <span class="key">modelPath</span>: <span class="num">null</span> <span class="comment">// or "./models/planet.glb"</span>
+    }
+  ],
+  <span class="key">moons</span>: []
+}</pre>
+    <p>Every system in your universe is one object in the array. Position it by editing [x, y, z]. No other code changes needed.</p>
+  </div>
+
+  <footer>
+    <span>Diego Salischiker — Space Portfolio</span>
+    <span>Updated April 2026</span>
+  </footer>
+
+</div>
+
+<script>
+  function toggleTask(el) {
+    el.classList.toggle('open');
+    const hint = el.querySelector('.toggle-hint');
+    if (hint) hint.textContent = el.classList.contains('open') ? 'hide detail' : 'show detail';
+  }
+</script>
+</body>
+</html>
