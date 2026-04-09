@@ -46,11 +46,11 @@ Full free-flight in all three axes. The visitor has complete 3D freedom — they
 
 | Property | Value |
 |---|---|
-| Control scheme | Keyboard (WASD / arrow keys) + mouse for direction |
-| Mobile | On-screen joystick-style touch input |
-| Gamepad | Supported — analog sticks for direction and throttle |
-| Movement feel | Lerp-based smooth acceleration, not instant. Subtle inertia on stop. |
-| Speed | Two modes: normal cruise and boost (hold Shift / right trigger) |
+| Control scheme | Keyboard (WASD / arrow keys) + gamepad analog sticks + on-screen joystick (mobile) |
+| Mobile | On-screen joystick-style touch input (appears on tap, bottom-right corner) |
+| Gamepad | Supported — left/right analog sticks, bumpers for vertical axis, right trigger for boost |
+| Movement feel | **Velocity-based physics with acceleration and inertia.** Input directly affects target velocity; actual velocity lerps smoothly to target with damping (~0.85–0.9). Produces organic acceleration into movement and smooth deceleration on stop — feels weighty and responsive. |
+| Speed | Two modes: normal cruise (~0.02 units/frame) and boost (~0.04 units/frame, hold Shift / right trigger) |
 
 ### 3.2 Camera
 
