@@ -42,7 +42,7 @@ export function useDevPanel(initialState: PanelState, onStateChange: (state: Pan
     })
 
     // Add separator
-    pane.addSeparator()
+    //pane.addSeparator()
 
     // Add camera controls
     pane.addBinding(stateRef.current, 'cameraSpeed', {
